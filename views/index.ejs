@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional card Generator</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="javascripts/angularApp.js"></script>
+
+</head>
+<body ng-app="proCard"> <!--ng-controller="MainCtrl"-->
+<script type="text/ng-template" id="/home.html">
+    <h1>Professional card Generator</h1>
+    <p>
+        <form ng-submit="buildPDF()">
+            <p>Last Name : <input type="text" ng-model="lastName" /></p>
+            <p>First Name : <input type="text" ng-model="firstName" /></p>
+            <p>Professional Card Number : <input type="number" ng-model="proCardNumber" /></p>
+            <p>Birthday : <input type="date" ng-model="birthday" /></p>
+            <!-- <p>Pic : <input type="file" /></p> -->
+            <button ng-click="createCard()">Submit</button>
+
+    </form>
+    </p>
+
+    <h2>Insight</h2>
+    {{proCards}}
+
+
+    <h2>List of professional Cards</h2>
+        <div ng-repeat="proCard in proCards">
+            {{proCard.firstName}} {{proCard.lastName}} - {{proCard.number}}
+            <span> <a href="#/proCards/{{proCard._id}}"> Open </a> </span>
+        </div>
+</script>
+
+<script type="text/ng-template" id="/proCards.html">
+    <h3>
+        You have picked only one professionnal card : {{ proCard }}
+    </h3>
+</script>
+
+<ui-view></ui-view>
+</body>
+</html>
